@@ -1,0 +1,135 @@
+<mvc:View controllerName="ZTEST_21_03.controller.View1" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.f" xmlns:t="sap.ui.table" xmlns:fb="sap.ui.comp.filterbar" displayBlock="true" xmlns="sap.m">
+	<App>
+		<f:DynamicPage id="dynamicPageId" stickySubheaderProvider="idIconTabBar" class="sapUiNoContentPadding">
+			<!-- DynamicPage Title -->
+			<f:title>
+				<f:DynamicPageTitle>
+					<f:heading>
+						<Title text="{i18n>mainViewTitle}"/>
+					</f:heading>
+				</f:DynamicPageTitle>
+			</f:title>
+			<!-- DynamicPage Header -->
+			<f:header>
+				<f:DynamicPageHeader pinnable="true">
+					<fb:FilterBar search="onSearch" clear="onClear" showGoOnFB="true" showClearOnFB="true" showFilterConfiguration="false" useToolbar="false">
+						<fb:filterGroupItems>
+							<fb:FilterGroupItem groupName="G1" name="N1" label="{i18n>searchFieldLabelEBELN}" visibleInFilterBar="true">
+								<fb:control>
+									<Input id="idFilterEbeln" showValueHelp="false" type="Text" showSuggestion="false"/>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem groupName="G1" name="N2" label="{i18n>searchFieldLabelBUKRS}" visibleInFilterBar="true">
+								<fb:control>
+									<Input id="idFilterBukrs" showValueHelp="false" type="Text" showSuggestion="false"/>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem groupName="G1" name="N3" label="{i18n>searchFieldLabelLIFNR}" visibleInFilterBar="true">
+								<fb:control>
+									<Input id="idFilterLifnrTxt" showValueHelp="false" type="Text" showSuggestion="false"/>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem groupName="G1" name="N4" label="{i18n>searchFieldLabelEKORG}" visibleInFilterBar="true">
+								<fb:control>
+									<Input id="idFilterEkotx" showValueHelp="false" type="Text" showSuggestion="false"/>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem groupName="G1" name="N5" label="{i18n>searchFieldLabelEKGRP}" visibleInFilterBar="true">
+								<fb:control>
+									<Input id="idFilterEknam" showValueHelp="false" type="Text" showSuggestion="false"/>
+								</fb:control>
+							</fb:FilterGroupItem>
+						</fb:filterGroupItems>
+					</fb:FilterBar>
+				</f:DynamicPageHeader>
+			</f:header>
+			<f:content>
+				<IconTabBar id="idIconTabBar" select=".onFilterSelect" class="sapUiResponsiveContentPadding">
+					<items>
+						<IconTabFilter id="stdTab" icon="sap-icon://world" iconColor="Positive" count="{/ProductCollectionStats/Counts/Weight/Ok}" text="{i18n>tabStandardPO}"
+							key="stdPO">
+							<ScrollContainer>
+								<Table id="stdTable" alternateRowColors="true" growing="true" growingThreshold="100" mode="MultiSelect"  items="{myModel>/}"
+									updateFinished="onFinished" includeItemInSelection="true">
+									<headerToolbar>
+										<Toolbar>
+											<Title id="g" text="{i18n>titleSTDTable}"></Title>
+											<ToolbarSpacer/>
+											<Button press="onCreate" icon="sap-icon://add-product" type="Emphasized"/>
+										</Toolbar>
+									</headerToolbar>
+									<columns>
+										<Column hAlign="Center" mergeDuplicates="true">
+											<Text text="{/#ZCBO00ITEM_0030_DDLType/Ebeln/@sap:label}"/>
+										</Column>
+										<Column hAlign="Center">
+											<Text text="{/#ZCBO00ITEM_0030_DDLType/Ebelp/@sap:label}"/>
+										</Column>
+										<Column hAlign="Center">
+											<Text text="{/#ZCBO00HD_0030_DDLType/Bukrs/@sap:label}"/>
+										</Column>
+										<Column hAlign="Center">
+											<Text text="{/#ZCBO00HD_0030_DDLType/Lifnr/@sap:label}"/>
+										</Column>
+										<Column hAlign="Center">
+											<Text text="{/#ZCBO00HD_0030_DDLType/Ekorg/@sap:label}"/>
+										</Column>
+										<Column hAlign="Center">
+											<Text text="{/#ZCBO00HD_0030_DDLType/Ekgrp/@sap:label}"/>
+										</Column>
+										<Column hAlign="Center">
+											<Text text="{/#ZCBO00ITEM_0030_DDLType/Matnr/@sap:label}"/>
+										</Column>
+										<Column hAlign="Center">
+											<Text text="{/#ZCBO00ITEM_0030_DDLType/Lgort/@sap:label}"/>
+										</Column>
+										<Column hAlign="Center">
+											<Text text="{/#ZCBO00ITEM_0030_DDLType/Netpr/@sap:label}"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<Text text="{myModel>Ebeln}"/>
+												<Text text="{myModel>Ebelp}"/>
+												<Text text="{myModel>Bukrs}({myModel>Butxt})"/>
+												<Text text="{myModel>Lifnr}({myModel>LifnrTxt})"/>
+												<Text text="{myModel>Ekorg}({myModel>Ekotx})"/>
+												<Text text="{myModel>Ekgrp}({myModel>Eknam})"/>
+												<Text text="{myModel>Matnr}({myModel>Maktx})"/>
+												<Text text="{myModel>Lgort}({myModel>Lgobe})"/>
+												<ObjectNumber number="{myModel>Netpr}" unit="{myModel>Waers}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</ScrollContainer>
+						</IconTabFilter>
+						<IconTabFilter id="cboTab" icon="sap-icon://my-sales-order" iconColor="Critical" count="{}"
+							text="{i18n>tabCboPO}" key="CBO">
+							<ScrollContainer>
+								<List id="poList"  growing="true" updateFinished="onFinished2"  growingThreshold="20" items="{/ZCBO00HD_0030_DDL}" itemPress="onNavButton" includeItemInSelection="true"
+									mode="Delete" delete="onDelete">
+									<headerToolbar>
+										<Toolbar>
+											<Title text="{i18n>titleCBOTable}"></Title>
+											<ToolbarSpacer/>
+											<SearchField id="cboSearch" search="onSearch2"  width="400px" placeholder="구매문서 번호로 검색..."/>
+											<Button text="새로고침" press="onRefresh" icon="sap-icon://refresh" type="Emphasized" iconFirst="false"/>
+										</Toolbar>
+									</headerToolbar>
+									<StandardListItem title="{/#ZCBO00ITEM_0030_DDLType/Ebeln/@sap:label} : {Ebeln}" 
+													description="{/#ZCBO00HD_0030_DDLType/Bukrs/@sap:label} : {Bukrs}({Butxt})" 
+													icon="sap-icon://bbyd-active-sales" type="Active"
+													iconInset="false" info="세부품목"  counter="{Zcount}" press="onItemList" 
+										infoState="Success" highlight="{=${Zcount} > 6 ? 'Error': ${Zcount} > 3 ? 'Warning': ${Zcount} > 1 ? 'Success' :'Information' }" />
+								</List>
+							</ScrollContainer>
+						</IconTabFilter>
+					</items>
+				</IconTabBar>
+			</f:content>
+		</f:DynamicPage>
+	</App>
+</mvc:View>
