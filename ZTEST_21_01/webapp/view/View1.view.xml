@@ -1,0 +1,73 @@
+<mvc:View controllerName="istn.erpZTEST_21_01.controller.View1" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:core="sap.ui.core">
+	<App >
+		<pages>
+			<Page title="{i18n>title}">
+				<content>
+
+					<Table id="myTable" items="{Flight>/d/results}" alternateRowColors="true" growing="true" growingThreshold="50">
+					<headerToolbar>
+						<Toolbar>
+							<Title text="{i18n>tableTitle}"></Title>
+							<ToolbarSpacer/>
+							<Button id="iconBtn" icon="sap-icon://message-popup" press="onPressIconBtn" type="Transparent"> </Button>
+							<Button id="calBtn" text="{i18n>buttonText}" icon="sap-icon://flight" type="Transparent" iconFirst="false" press="onPressCal"></Button>
+							<Switch id="switch" customTextOff="{i18n>labelInactive}" customTextOn="{i18n>labelActive}" change="onChange" state="true"></Switch>
+						</Toolbar>
+					</headerToolbar>
+						<columns>
+							<Column hAlign="Center">
+								<header>
+									<Label text="{i18n>labelCarrid}"/>
+								</header>
+							</Column>
+							<Column hAlign="Center">
+								<header>
+									<Label text="{i18n>labelConnid}"/>
+								</header>
+							</Column>
+							<Column hAlign="Center">
+								<header>
+									<Label text="{i18n>labelPrice} ({i18n>labelCurrency})"/>
+								</header>
+							</Column>
+							<Column hAlign="Center">
+								<header>
+									<Label text="{i18n>labelSeatsMax}"/>
+								</header>
+							</Column>
+							<Column hAlign="Center">
+								<header>
+									<Label text="{i18n>labelSeatsOcc}"/>
+								</header>
+							</Column>
+							<Column hAlign="Center">
+								<header>
+									<Label text="{i18n>labelSeatsAvr}"/>
+								</header>
+							</Column>
+							<Column hAlign="Center">
+								<header>
+									<Label text="{i18n>buttonDetail}"/>
+								</header>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{Flight>Carrid}"/>
+									<Text text="{Flight>Connid}"/>
+									<ObjectNumber number="{Flight>Price}" numberUnit="{Flight>Currency}"/>
+									<ObjectNumber number="{Flight>Seatsmax}" state="{=${Flight>Seatsocc}/${Flight>Seatsmax} > 0.5? 'Error':'Success'}"/>
+									<ObjectNumber number="{Flight>Seatsocc}" state="{=${Flight>Seatsocc}/${Flight>Seatsmax} > 0.5? 'Error':'Success'}" />
+									<core:Icon src="sap-icon://simulate" press="onPressIcon"/>
+									<Button text="{i18n>buttonDetail}" press="onPressInfo"></Button>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
