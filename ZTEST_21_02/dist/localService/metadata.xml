@@ -1,0 +1,121 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/>
+    </edmx:Reference>
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+    </edmx:Reference>
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZTUTOR00_0020_SRV" xml:lang="ko" sap:schema-version="1">
+            <Annotation
+                xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Core.SchemaVersion" String="1.0.0"/>
+                <EntityType Name="ZPO00HD_0020_DDLType" sap:label="Purchase Order" sap:content-version="1">
+                    <Key>
+                        <PropertyRef Name="Ebeln"/>
+                    </Key>
+                    <Property Name="Ebeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="구매문서" sap:quickinfo="구매 문서 번호"/>
+                    <Property Name="Bukrs" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="회사코드" sap:quickinfo="회사 코드"/>
+                    <Property Name="Poamt" Type="Edm.Decimal" Precision="24" Scale="5" sap:unit="Waers"/>
+                    <Property Name="Waers" Type="Edm.String" MaxLength="5" sap:display-format="UpperCase" sap:label="통화" sap:quickinfo="통화 키" sap:semantics="currency-code"/>
+                    <NavigationProperty Name="to_POItem" Relationship="ZTUTOR00_0020_SRV.assoc_01F839581B1E73198250AE69029A7705" FromRole="FromRole_assoc_01F839581B1E73198250AE69029A7705" ToRole="ToRole_assoc_01F839581B1E73198250AE69029A7705"/>
+                </EntityType>
+                <EntityType Name="ZPO00ITEM_0020_DDLType" sap:label="PO Item" sap:content-version="1">
+                    <Key>
+                        <PropertyRef Name="Ebeln"/>
+                        <PropertyRef Name="Ebelp"/>
+                    </Key>
+                    <Property Name="Ebeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="구매문서" sap:quickinfo="구매 문서 번호"/>
+                    <Property Name="Ebelp" Type="Edm.String" Nullable="false" MaxLength="5" sap:display-format="NonNegative" sap:label="구매문서품목" sap:quickinfo="구매 문서의 품목 번호"/>
+                    <Property Name="Bukrs" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="회사코드" sap:quickinfo="회사 코드"/>
+                    <Property Name="Lifnr" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="공급업체" sap:quickinfo="공급업체 계정 번호"/>
+                    <Property Name="Bedat" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="구매증빙일" sap:quickinfo="레코드 생성일"/>
+                    <Property Name="Ekorg" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="구매조직" sap:quickinfo="구매 조직"/>
+                    <Property Name="Ekgrp" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="구매그룹" sap:quickinfo="구매 그룹"/>
+                    <Property Name="Matnr" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="자재번호" sap:quickinfo="자재 번호"/>
+                    <Property Name="Werks" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="플랜트"/>
+                    <Property Name="Lgort" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="저장위치" sap:quickinfo="저장 위치"/>
+                    <Property Name="Menge" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="Meins" sap:label="수량" sap:quickinfo="구매 오더 수량"/>
+                    <Property Name="Meins" Type="Edm.String" MaxLength="3" sap:label="기본단위" sap:quickinfo="구매 오더 단위" sap:semantics="unit-of-measure"/>
+                    <Property Name="Netpr" Type="Edm.Decimal" Precision="12" Scale="3" sap:unit="Waers" sap:label="단가" sap:quickinfo="구매 문서의 단가(전표 통화)"/>
+                    <Property Name="Waers" Type="Edm.String" MaxLength="5" sap:display-format="UpperCase" sap:label="통화" sap:quickinfo="통화 키" sap:semantics="currency-code"/>
+                </EntityType>
+                <Association Name="assoc_01F839581B1E73198250AE69029A7705" sap:content-version="1">
+                    <End Type="ZTUTOR00_0020_SRV.ZPO00HD_0020_DDLType" Multiplicity="1" Role="FromRole_assoc_01F839581B1E73198250AE69029A7705"/>
+                    <End Type="ZTUTOR00_0020_SRV.ZPO00ITEM_0020_DDLType" Multiplicity="*" Role="ToRole_assoc_01F839581B1E73198250AE69029A7705"/>
+                </Association>
+                <EntityContainer Name="ZTUTOR00_0020_SRV_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                    <EntitySet Name="ZPO00HD_0020_DDL" EntityType="ZTUTOR00_0020_SRV.ZPO00HD_0020_DDLType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                    <EntitySet Name="ZPO00ITEM_0020_DDL" EntityType="ZTUTOR00_0020_SRV.ZPO00ITEM_0020_DDLType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                    <AssociationSet Name="assoc_01F839581B1E73198250AE69029A7705" Association="ZTUTOR00_0020_SRV.assoc_01F839581B1E73198250AE69029A7705" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                        <End EntitySet="ZPO00HD_0020_DDL" Role="FromRole_assoc_01F839581B1E73198250AE69029A7705"/>
+                        <End EntitySet="ZPO00ITEM_0020_DDL" Role="ToRole_assoc_01F839581B1E73198250AE69029A7705"/>
+                    </AssociationSet>
+                </EntityContainer>
+                <Annotations
+                    xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZTUTOR00_0020_SRV.ZTUTOR00_0020_SRV_Entities">
+                    <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+                </Annotations>
+                <Annotations
+                    xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZTUTOR00_0020_SRV.ZTUTOR00_0020_SRV_Entities/ZPO00HD_0020_DDL">
+                    <Annotation Term="Capabilities.NavigationRestrictions">
+                        <Record>
+                            <PropertyValue Property="RestrictedProperties">
+                                <Collection>
+                                    <Record>
+                                        <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_POItem"/>
+                                        <PropertyValue Property="InsertRestrictions">
+                                            <Record>
+                                                <PropertyValue Property="Insertable" Bool="false"/>
+                                            </Record>
+                                        </PropertyValue>
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                    </Annotation>
+                </Annotations>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZTUTOR00_0020_SRV/$metadata"/>
+                    <atom:link
+                        xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZTUTOR00_0020_SRV/$metadata"/>
+                    </Schema>
+                </edmx:DataServices>
+            </edmx:Edmx>

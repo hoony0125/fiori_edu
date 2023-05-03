@@ -1,0 +1,111 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f" controllerName="ZTEST_21_02.controller.Detail"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}" toggleHeaderOnTitleClick="{/titleClickable}">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="{i18n>detailViewTitle}"/>
+					
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<f:content>
+			<Table id="poTable" items="{detailModel>/}" mode="Delete" growing="true" growingThreshold="10" delete="onDelete">
+				<headerToolbar>
+					<Toolbar>
+						<Title text="{i18n>labelEBELN}: {detailModel>/0/Ebeln}"/>
+						<ToolbarSpacer/>
+						<Button id="button00" text="새로고침" press="onRefresh" icon="sap-icon://refresh" iconFirst="false"></Button>
+					</Toolbar>
+				</headerToolbar>
+				<columns >
+					<Column hAlign="Center">
+						<header>
+							<Label text="{i18n>labelEBELP}"/>
+						</header>
+					</Column>
+					<Column hAlign="Center">
+						<header>
+							<Label text="{i18n>labelBUKRS}"/>
+						</header>
+					</Column>
+					<Column hAlign="Center">
+						<header>
+							<Label text="{i18n>labelLIFNR}"/>
+						</header>
+					</Column>
+					<Column hAlign="Center">
+						<header>
+							<Label text="{i18n>labelBEDAT}"/>
+						</header>
+					</Column>
+					<Column hAlign="Center">
+						<header>
+							<Label text="{i18n>labelEKORG}"/>
+						</header>
+					</Column>
+					<Column hAlign="Center">
+						<header>
+							<Label text="{i18n>labelEKGRP}"/>
+						</header>
+					</Column>
+					<Column hAlign="Center">
+						<header>
+							<Label text="{i18n>labelMATNR}"/>
+						</header>
+					</Column>
+					<Column hAlign="Center">
+						<header>
+							<Label text="{i18n>labelWERKS}"/>
+						</header>
+					</Column>
+					<Column hAlign="Center">
+						<header>
+							<Label text="{i18n>labelLGORT}"/>
+						</header>
+					</Column>
+					<Column hAlign="Center">
+						<header>
+							<Label text="{i18n>labelMENGE}"/>
+						</header>
+					</Column>
+					<Column hAlign="Center">
+						<header>
+							<Label text="{i18n>labelMEINS}"/>
+						</header>
+					</Column>
+					<Column hAlign="Center">
+						<header>
+							<Label text="{i18n>labelNETPR}"/>
+						</header>
+					</Column>
+					<Column hAlign="Center">
+						<header>
+							<Label text="{i18n>labelWAERS}"/>
+						</header>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Active">
+						<cells>
+							<Text text="{detailModel>Ebelp}"/>
+							<Text text="{detailModel>Bukrs}"/>
+							<Text text="{detailModel>Lifnr}"/>
+							<Text text="{detailModel>Bedat}"/>
+							<Text text="{detailModel>Ekorg}"/>
+							<Text text="{detailModel>Ekgrp}"/>
+							<Text text="{detailModel>Matnr}"/>
+							<Text text="{detailModel>Werks}"/>
+							<Text text="{detailModel>Lgort}"/>
+							<Text text="{detailModel>Menge}"/>
+							<Text text="{detailModel>Meins}"/>
+							<Text text="{detailModel>Netpr}"/>
+							<Text text="{detailModel>Waers}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

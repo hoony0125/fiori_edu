@@ -1,0 +1,46 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f" xmlns:t="sap.ui.table"
+	xmlns:fb="sap.ui.comp.filterbar" controllerName="ZTEST_21_02.controller.Main" xmlns:html="http://www.w3.org/1999/xhtml">
+		<f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}" toggleHeaderOnTitleClick="{/titleClickable}">
+			<!-- DynamicPage Title -->
+			<f:title>
+				<f:DynamicPageTitle>
+					<f:heading>
+						<Title text="{i18n>mainViewTitle}"/>
+					</f:heading>
+				</f:DynamicPageTitle>
+			</f:title>
+			<!-- DynamicPage Header -->
+			<f:header>
+				<f:DynamicPageHeader pinnable="true">
+					<f:content>
+						<fb:FilterBar search="onSearch" clear="onClear" showGoOnFB="true" showClearOnFB="true" showFilterConfiguration="false" useToolbar="false">
+							<fb:filterGroupItems>
+								<fb:FilterGroupItem groupName="G1" name="N1" label="{i18n>searchFieldEBELN}" visibleInFilterBar="true">
+									<fb:control>
+										<MultiInput id="idFilterEbeln" showValueHelp="false" type="Text" showSuggestion="false"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+								<fb:FilterGroupItem groupName="G1" name="N2" label="{i18n>searchFieldBUKRS}" visibleInFilterBar="true">
+									<fb:control>
+										<MultiInput id="idFilterBukrs" showValueHelp="false" type="Text" showSuggestion="false"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+							</fb:filterGroupItems>
+						</fb:FilterBar>
+					</f:content>
+				</f:DynamicPageHeader>
+			</f:header>
+			<f:content>
+				<List id="poList" growing="true" growingThreshold="10" items="{/ZPO00HD_0020_DDL}" itemPress="onNavButton">
+					<!--updateFinished라는 property에 onFinish 함수를 주고 oEvent를 파라미터로 넣어서 할 수도 있다.-->
+					<headerToolbar>
+						<Toolbar>
+							<Title id="cntRead" text="조회건수 : "></Title>
+							<ToolbarSpacer/>
+						</Toolbar>
+					</headerToolbar>
+					<StandardListItem title="{i18n>labelEBELN} : {Ebeln}" description="{i18n>labelBUKRS} : {Bukrs}" icon="sap-icon://dimension" type="Navigation" info="{Poamt} {Waers}" infoState="Success" highlight="Information"/>
+				</List>
+			</f:content>
+		</f:DynamicPage>
+</mvc:View>
